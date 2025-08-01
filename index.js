@@ -5,6 +5,8 @@ const cors = require('cors');
 const propertyRoutes = require('./routes/properties');
 
 const app = express();
+const listingsRoute = require("./routes/listings");
+app.use("/listings", listingsRoute);
 const PORT = process.env.PORT || 5000;
 
 // Middleware

@@ -12,6 +12,20 @@ app.use(express.json()); // Parses JSON request body
 const listingsRoute = require("./routes/listings");
 app.use("/listings", listingsRoute);
 
+const Listing = require('./models/Listing'); 
+
+app.get('/listings/:id', async (req, res) => {
+  try {
+    const listing = await Listing.findById(req.params.id);
+    if (!listing) {
+      return res.status(404).send('Listing not found');
+    }
+    res.json(listing);
+  } catch (err) {
+    res.status(500).send('Server error');
+  }
+});
+
 const PORT = process.env.PORT || 5000;
 
 

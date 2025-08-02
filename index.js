@@ -5,13 +5,15 @@ const cors = require('cors');
 const propertyRoutes = require('./routes/properties');
 
 const app = express();
-const listingsRoute = require("./routes/listings");
-app.use("/listings", listingsRoute);
-const PORT = process.env.PORT || 5000;
 
-// Middleware
 app.use(cors());
 app.use(express.json()); // Parses JSON request body
+
+const listingsRoute = require("./routes/listings");
+app.use("/listings", listingsRoute);
+
+const PORT = process.env.PORT || 5000;
+
 
 // Routes
 app.use('/properties', propertyRoutes);
